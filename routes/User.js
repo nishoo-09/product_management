@@ -81,9 +81,9 @@ routes.get('/lists', async(req, res, next)=>{
   try {
     const data = await userModel.find().exec();
     if(data.length)
-      return res.status(401).json({ message: "success" , results : data});
+      return res.status(200).json({ message: "success" , results : data});
     else
-      return res.status(401).json({ message: "success" , results : {}});
+      return res.status(200).json({ message: "success" , results : {}});
   } catch(e) {
     return res.status(401).json({ errors: "Internal error" });
   }
