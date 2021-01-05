@@ -10,6 +10,6 @@ const Product = require('./routes/Product');
 app.use('/user', User);
 app.use('/business', Business);
 app.use('/product', Product);
-app.listen(port, '103.81.182.243', ()=>{
+app.listen(port, ()=>{
 	console.log(`application is running on ${port}`);
 });
