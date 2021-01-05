@@ -128,9 +128,9 @@ routes.get('/lists', async(req, res, next)=>{
   try {
     const data = await productModel.find().populate('user business').exec();
     if(data.length)
-      return res.status(401).json({ message: "success" , results : data});
+      return res.status(200).json({ message: "success" , results : data});
     else
-      return res.status(401).json({ message: "success" , results : {}});
+      return res.status(200).json({ message: "success" , results : {}});
   } catch(e) {
     return res.status(401).json({ errors: "Internal error" });
   }
@@ -141,6 +141,10 @@ routes.post('/update', upload.single('productImage'),[
     check('name', `name cann't be empty`).exists(),
     check('mrp', `mrp cann't be empty`).exists(),
     check('description', `description cann't be empty`).exists(),
+    check('productImage').custom((value, { req }) => {
+      if (!req.file) throw new Error("Product image is required (maxsize 30KB)");
+      return true;
+    }),
   ], 
   async(req, res, next)=>{
     const errors = validationResult(req);
