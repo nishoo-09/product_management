@@ -11,5 +11,5 @@ app.use('/user', User);
 app.use('/business', Business);
 app.use('/product', Product);
 app.listen(port, 'localhost', ()=>{
-	console.log('application is running on 3000');
+	console.log(`application is running on ${port}`);
 });
